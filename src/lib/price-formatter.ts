@@ -27,6 +27,7 @@ export const getFormatter = (currency: string | null) => {
     });
 };
 
+// Function called from UI
 export const formatPrice = (item: ItemWithPrice) => {
     if (!item.itemPrice) {
         return item.price;
@@ -36,6 +37,11 @@ export const formatPrice = (item: ItemWithPrice) => {
     const maxFracDigits = getMaximumFractionDigits(item.itemPrice.currency);
 
     const value = item.itemPrice.value / Math.pow(10, maxFracDigits);
+    if (item.itemPrice.currency === "USD") {
+        return "US$" + value;
+    } else if (item.itemPrice.currency === "CAD") {
+        return "C$" + value;
+    } 
     return formatter.format(value);
 };
 
