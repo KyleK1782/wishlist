@@ -38,9 +38,9 @@ export const formatPrice = (item: ItemWithPrice) => {
 
     const value = item.itemPrice.value / Math.pow(10, maxFracDigits);
     if (item.itemPrice.currency === "USD") {
-        return "US$" + value;
+        return "US$" + value.toFixed(2);
     } else if (item.itemPrice.currency === "CAD") {
-        return "C$" + value;
+        return "C$" + value.toFixed(2);
     } 
     return formatter.format(value);
 };
